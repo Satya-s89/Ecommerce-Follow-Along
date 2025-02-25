@@ -16,5 +16,3 @@ During this session, we covered the basics of setting up a project repository an
 ## Tech Stack
 - **Frontend**: React, Redux, CSS, Vite
 - **Backend**: Node.js
-
-
