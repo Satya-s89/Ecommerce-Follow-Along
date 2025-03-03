@@ -16,3 +16,29 @@ During this session, we covered the basics of setting up a project repository an
 ## Tech Stack
 - **Frontend**: React, Redux, CSS, Vite
 - **Backend**: Node.js
+
+# E-commerce Project - Milestone 2
+
+## Key Features
+
+### 1. Project Folder Structure
+- Organize project files into separate `frontend` and `backend` directories.
+- Ensure a clear and maintainable structure for better project management.
+
+### 2. React Frontend Setup
+- Initialize a React application for building the user interface.
+- Set up essential configurations and dependencies for smooth development.
+
+### 3. Node.js Backend Setup
+- Set up a simple Node.js server to prepare for API integration in future milestones.
+- Configure basic routes and middleware to handle incoming requests.
+
+### 4. Tailwind CSS Configuration
+- Integrate and configure Tailwind CSS to enable modern, responsive, and utility-based styling.
+- Ensure a consistent and appealing design across the application.
+
+### 5. Login Page Development
+- Create the first user interface of the e-commerce application, focusing on both functionality and styling.
+- Implement form handling and validation for user login.
+
+
