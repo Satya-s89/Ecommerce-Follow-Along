@@ -17,6 +17,8 @@ During this session, we covered the basics of setting up a project repository an
 - **Frontend**: React, Redux, CSS, Vite
 - **Backend**: Node.js
 
+
+
 # E-commerce Project - Milestone 2
 
 ## Key Features
