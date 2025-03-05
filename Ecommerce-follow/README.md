@@ -44,3 +44,29 @@ During this session, we covered the basics of setting up a project repository an
 - Implement form handling and validation for user login.
 
 
+
+## Milestone 3: Project Setup for Backend
+
+### Achievements
+In this milestone, we laid the foundation for the backend of the e-commerce application. Here are the key accomplishments:
+- **Backend Folder Structure:** 
+  - Created a structured folder hierarchy to organize `routes`, `controllers`, `models`, and `middlewares`.
+  - Added placeholder files where necessary to establish a blueprint for future development.
+- **Node.js Server Setup:**
+  - Initialized and configured a Node.js server using Express.
+  - Configured the server to listen on a designated port for API requests.
+- **Database Connection:**
+  - Integrated MongoDB into the project for efficient data storage.
+  - Successfully established the connection between the server and the MongoDB database.
+- **Basic Error Handling:**
+  - Implemented a simple yet effective error-handling mechanism to provide clear error messages and ensure smooth server operation.
+
+### Steps Completed
+1. Set up dedicated folders for backend organization:
+   - `controllers/` for handling business logic.
+   - `models/` for defining the database schema.
+   - `middlewares/` for utilities like authentication (to be expanded in future milestones).
+2. Installed necessary dependencies (`express`, `mongoose`, etc.) and created the entry file (`index.js`).
+3. Configured and tested the database connection using MongoDB.
+4. Added basic error-handling middleware for better debugging and user feedback.
+
