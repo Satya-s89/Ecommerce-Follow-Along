@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const connect = require('connect');
-
+const userRouter = require('./controllers/userRouter');
 
 app.get('/',(req,res)=>{
     try{
@@ -11,6 +11,8 @@ app.get('/',(req,res)=>{
     }
 })
 
+app.use("/user",userRouter);
+
 app.listen(8000,async()=>{
     try{
       await connect();
@@ -19,3 +21,4 @@ app.listen(8000,async()=>{
     console.log('server is not connected', err);
     }
 })
+
