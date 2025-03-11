@@ -90,3 +90,4 @@ In this milestone, we enhanced backend functionality with user management and fi
 2. **User Controller:** Set up API endpoints for user operations.
 3. **Multer Integration:** Configured file upload settings and storage.
 4. **README Update:** Documented progress and highlights for Milestone 4.
+

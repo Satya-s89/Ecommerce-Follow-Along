@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@tailwindcss/vite": "^4.0.9",
-    "install": "^0.13.0",
-    "npm": "^11.1.0",
-    "tailwindcss": "^4.0.9"
-  }
-}
