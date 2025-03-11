@@ -91,3 +91,30 @@ In this milestone, we enhanced backend functionality with user management and fi
 3. **Multer Integration:** Configured file upload settings and storage.
 4. **README Update:** Documented progress and highlights for Milestone 4.
 
+
+## 🎯 Milestone 5: Creating the Signup Page
+
+### **Achievements**
+In this milestone, we focused on developing the **Sign-Up Page** for the application, ensuring it is both functional and user-friendly. Below is a summary of what was achieved:
+
+1. **Sign-Up Page UI**:
+   - Built a responsive and accessible sign-up form using **HTML**, **CSS (Tailwind)**, and **React**.
+   - Added input fields for the following:
+     - Name
+     - Email
+     - Password
+   - Styled the form to ensure it is aesthetically pleasing and fits seamlessly with the app's theme.
+
+2. **Form Validation**:
+   - Implemented **client-side validation** to ensure users provide accurate and valid data before submission:
+     - Ensured the Name field is not empty.
+     - Validated Email format using regex.
+     - Enforced a minimum password length of 8 characters for security purposes.
+   - Provided real-time feedback for invalid inputs, improving the user experience.
+
+3. **Backend Integration**:
+   - Connected the frontend to the backend API for user registration using **Axios**:
+     - Sent the user’s Name, Email, and Password to the backend server for processing.
+     - Handled success and error responses gracefully with meaningful feedback.
+
+
