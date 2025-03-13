@@ -199,3 +199,60 @@ In this milestone, we focused on creating a secure backend endpoint for the **Si
 4. **Compliance with Best Practices**:
    - Followed security standards like **GDPR** and **PCI-DSS** by securely storing passwords.
    - Enhanced the overall backend structure for future scalability.
+
+
+To create the README file for **Milestone 7**, here’s a structured format you can use to reflect the progress made:
+
+---
+
+# **Ecommerce-Follow-Along**
+
+## **Milestone 7: User Login Authentication** 🔑
+
+### **Overview**
+In this milestone, the focus was on implementing a backend endpoint for user login. The core functionality centered around validating user credentials and securely comparing encrypted passwords using `bcrypt`. This milestone helps ensure secure authentication for users while adhering to industry-standard practices.
+
+---
+
+### **What Was Achieved**
+1. **Login Endpoint Implementation**:
+   - Created a `POST /login` endpoint to accept user credentials (email/username and password).
+   - Validated if the provided credentials match an existing user in the database.
+
+2. **Password Encryption and Validation**:
+   - Used `bcrypt` to securely hash passwords during user registration.
+   - During login, compared the hashed password stored in the database with the hashed version of the user's input.
+
+3. **Error Handling**:
+   - Returned meaningful error messages:
+     - *"User does not exist"* if the email/username was not found.
+     - *"Incorrect password"* if the password comparison failed.
+
+4. **Secure Practices**:
+   - No sensitive data was stored in plain text.
+   - Only the password hash was stored in the database.
+   - Followed one-way password hashing techniques to prevent password theft.
+
+---
+
+### **How Login Authentication Works**
+1. **User Input Validation**:
+   - The user enters their email/username and password.
+   - Input is validated for completeness (e.g., non-empty fields).
+
+2. **Data Retrieval**:
+   - The backend fetches the corresponding user record from the database using the provided email/username.
+
+3. **Password Comparison**:
+   - The input password is hashed using `bcrypt` and compared to the stored hash.
+
+4. **Authentication**:
+   - If the hashes match, the user is successfully authenticated.
+   - If the hashes don’t match, the user receives an error message.
+
+---
+
+### **Technologies Used**
+- **Node.js**: Backend framework.
+- **Express.js**: Framework for creating RESTful APIs.
+- **bcrypt**: For secure password hashing and comparison.
