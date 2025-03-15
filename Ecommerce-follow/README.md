@@ -187,3 +187,44 @@ In this milestone, the focus was on implementing a backend endpoint for user log
 - **bcrypt**: For secure password hashing and comparison.
 
 ---
+
+
+## Milestone 8: Product Card Component & Homepage Design 🌟
+
+### Learning Goals 🎯
+By completing this milestone, we have:
+- Learned to create a reusable card component.
+- Mastered displaying multiple cards dynamically on the products page.
+- Understood the importance of organized layouts for improving user experience.
+
+
+## Why Create Card Components? 🤔
+
+1. **Showcase Products Effectively:** 
+   - Presents product details in a visually appealing and accessible way.
+
+2. **Reusable Design:** 
+   - Card components are flexible and can be integrated across the app.
+
+3. **Improved User Experience:** 
+   - Simplifies product browsing and interaction for users.
+
+4. **Organized Layout:** 
+   - Enhances the look and feel of the homepage with structured content.
+
+
+## Implementation
+
+### Card Component
+- Created a dynamic and reusable card component.
+- The card accepts the following `props` for product details:
+  - **Name**: Displays the product name.
+  - **Image**: Shows the product image.
+  - **Price**: Displays the product price.
+- Used **CSS styling** to ensure a professional and consistent look.
+
+### Homepage Layout
+- Designed a neat **grid layout** using CSS or Flexbox for displaying the cards.
+- Used **array mapping** to render cards for multiple products dynamically.
+- Maintained a uniform layout for all product cards, ensuring consistency.
+
