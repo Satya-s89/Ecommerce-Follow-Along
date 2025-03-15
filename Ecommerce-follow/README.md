@@ -3,12 +3,10 @@
 ## 🌟 Overview
 This is a feature-rich eCommerce application that allows users to browse, search, and purchase products. The application includes user authentication, product management, a shopping cart, order processing, and payment integration.
 
----
 
 ## 🏆 Milestone 1: Project Overview
 During this session, we covered the basics of setting up a project repository and initializing it with a README file. We also outlined the overall structure of our e-commerce application, including key features and the technologies we'll be using.
 
----
 
 ## 🚀 Features
 - 🔐 **User Authentication**: Secure user registration and login using JWT.
@@ -17,7 +15,6 @@ During this session, we covered the basics of setting up a project repository an
 - 📦 **Order Processing**: Seamless checkout process with order history.
 - 👤 **User Profile**: Users can view and update their profile and order history.
 
----
 
 ## ⚙️ Tech Stack
 - 🎨 **Frontend**: React, Redux, CSS, Vite
@@ -83,7 +80,6 @@ In this milestone, we enhanced backend functionality with user management and fi
   - Integrated Multer for file uploads (e.g., profile pictures).
   - 🖼️ Configured upload settings for seamless functionality.
 
----
 
 ### ✅ Steps Completed
 1. **User Model:** Defined schema using Mongoose with validations (e.g., email and password).
@@ -91,6 +87,7 @@ In this milestone, we enhanced backend functionality with user management and fi
 3. **Multer Integration:** Configured file upload settings and storage.
 4. **README Update:** Documented progress and highlights for Milestone 4.
 
+---
 
 ## 🎯 Milestone 5: Creating the Signup Page
 
@@ -117,66 +114,6 @@ In this milestone, we focused on developing the **Sign-Up Page** for the applica
      - Sent the user’s Name, Email, and Password to the backend server for processing.
      - Handled success and error responses gracefully with meaningful feedback.
 
-
-Here’s an updated **README.md** file with a new section for **Milestone 6: Backend Endpoint for Signup Page**:
-
----
-
-# 🛒 Ecommerce-Follow-Along
-
-## 🌟 Overview
-This is a feature-rich eCommerce application that allows users to browse, search, and purchase products. The application includes user authentication, product management, a shopping cart, order processing, and payment integration.
-
----
-
-## 🏆 Milestone 1: Project Overview
-During this session, we covered the basics of setting up a project repository and initializing it with a README file. We also outlined the overall structure of our e-commerce application, including key features and the technologies we'll be using.
-
----
-
-## 🚀 Features
-- 🔐 **User Authentication**: Secure user registration and login using JWT.
-- 🛍️ **Product Management**: CRUD operations for products, including categories and search functionality.
-- 🛒 **Shopping Cart**: Users can add, remove, and update products in their cart.
-- 📦 **Order Processing**: Seamless checkout process with order history.
-- 👤 **User Profile**: Users can view and update their profile and order history.
-
----
-
-## ⚙️ Tech Stack
-- 🎨 **Frontend**: React, Redux, CSS, Vite
-- 🛠️ **Backend**: Node.js, Express, MongoDB
-
----
-
-## 🎯 Milestone 2: Laying the Foundation
-
-### 🔑 Key Features
-1️⃣ Organized project folder structure (`frontend` and `backend` directories).  
-2️⃣ Initialized a React frontend for the UI.  
-3️⃣ Set up a Node.js server for backend API integration.  
-4️⃣ Configured Tailwind CSS for responsive, modern styling.  
-5️⃣ Built a Login page with form validation.
-
----
-
-## 🎉 Milestone 3: Backend Setup
-Set up a Node.js backend with a MongoDB database and error-handling mechanisms.
-
----
-
-## 🌟 Milestone 4: User Management and File Upload
-Enhanced the backend by adding a User model, user controllers for authentication, and file upload capabilities using Multer.
-
----
-
-## 🎯 Milestone 5: Creating the Signup Page
-
-### Achievements
-1. Created a responsive and user-friendly **Sign-Up Page** with HTML, React, and Tailwind CSS.  
-2. Implemented **form validation** for proper data input.  
-3. Connected the frontend to the backend API for user registration using Axios.
-
 ---
 
 ## 🎯 Milestone 6: Backend Endpoint for Signup Page
@@ -200,19 +137,13 @@ In this milestone, we focused on creating a secure backend endpoint for the **Si
    - Followed security standards like **GDPR** and **PCI-DSS** by securely storing passwords.
    - Enhanced the overall backend structure for future scalability.
 
-
-To create the README file for **Milestone 7**, here’s a structured format you can use to reflect the progress made:
-
 ---
 
-# **Ecommerce-Follow-Along**
-
-## **Milestone 7: User Login Authentication** 🔑
+## 🔑 Milestone 7: User Login Authentication 
 
 ### **Overview**
 In this milestone, the focus was on implementing a backend endpoint for user login. The core functionality centered around validating user credentials and securely comparing encrypted passwords using `bcrypt`. This milestone helps ensure secure authentication for users while adhering to industry-standard practices.
 
----
 
 ### **What Was Achieved**
 1. **Login Endpoint Implementation**:
@@ -233,7 +164,6 @@ In this milestone, the focus was on implementing a backend endpoint for user log
    - Only the password hash was stored in the database.
    - Followed one-way password hashing techniques to prevent password theft.
 
----
 
 ### **How Login Authentication Works**
 1. **User Input Validation**:
@@ -250,9 +180,10 @@ In this milestone, the focus was on implementing a backend endpoint for user log
    - If the hashes match, the user is successfully authenticated.
    - If the hashes don’t match, the user receives an error message.
 
----
 
 ### **Technologies Used**
 - **Node.js**: Backend framework.
 - **Express.js**: Framework for creating RESTful APIs.
 - **bcrypt**: For secure password hashing and comparison.
+
+---
