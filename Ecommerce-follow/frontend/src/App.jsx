@@ -1,15 +1,15 @@
 import './App.css'
-import Login from './components/Login'
-import Signup from './components/signup'
-import Products from './components/products'
+import { BrowserRouter } from 'react-router-dom'
+import AllRouting from './components/AllRouting'
 
 function App() {
   
   return (
     <>
-      <Login/>
-      <Signup/>
-      <Products/>
+      <BrowserRouter>
+        <AllRouting/>
+      </BrowserRouter>
+
     </>
   )
 }
