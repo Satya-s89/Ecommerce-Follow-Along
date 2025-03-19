@@ -67,3 +67,15 @@ This project is a full-stack eCommerce application where users can browse, searc
 - **Authentication**: bcrypt for secure passwords
 
 ---
+
+# 🛠️ Milestone 10: Product Schema and Endpoint Creation
+
+## 🌟 Overview
+This milestone focuses on creating a Mongoose schema for products and an endpoint to validate and save product details in MongoDB.
+
+## 🎯 Key Achievements
+- **Product Schema**: Defined fields like `name`, `description`, `price`, and `image URL` with proper validation.
+- **POST Endpoint**: Built an endpoint to receive, validate, and store product data in the database.
+- **Validation Importance**: Ensured data integrity by saving only valid product details.
+
+---

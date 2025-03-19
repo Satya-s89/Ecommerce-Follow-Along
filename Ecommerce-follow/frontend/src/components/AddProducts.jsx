@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react'
 import "./AddProducts.css"
 
@@ -25,8 +24,7 @@ const AddProduct = () => {
             <label htmlFor="">Add Images</label>
             {
                 noOfImages.map((ele)=>{
-                    <input type='file' accept='image/*'></input>
-                    
+                    <input type='file' accept='image/*'></input>    
                 })
             }
         </form>
