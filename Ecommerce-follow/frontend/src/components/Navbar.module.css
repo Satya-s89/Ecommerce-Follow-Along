@@ -18,7 +18,11 @@
     font-weight: 500;
 }
 
-.navbar > div:nth-child(2) div:hover{
+.navbar > div:nth-child(2){
+    cursor: pointer;
+}
+
+.navbar > div:nth-child(3){
     cursor: pointer;
 }
 

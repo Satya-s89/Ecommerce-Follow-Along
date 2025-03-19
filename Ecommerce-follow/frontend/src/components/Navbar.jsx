@@ -11,6 +11,13 @@ const Navbar = () => {
     }}>
         <h1>Home</h1>
     </div>
+
+    <div 
+    onClick={()=>{
+        navigate("/addproducts");
+    }}>
+        <p>Add Products</p>
+    </div>
     
     <div>
         <div
@@ -23,6 +30,7 @@ const Navbar = () => {
             navigate("/signup");
         }}>Signup</div>
     </div>
+    
     </div>
   )
 }

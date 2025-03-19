@@ -1,10 +1,9 @@
 const express = require('express');
 const userRouter = express.Router();
 const userModel = require('../models/userModel');
-const uploadUserImage = require('../middleWare/multer');
+const {uploadUserImage} = require('../middleWare/multer');
 
 const bcrypt = require('bcrypt');
-
 
 userRouter.post('/signup', uploadUserImage.single("userImage"), async (req, res) => {
     try {
