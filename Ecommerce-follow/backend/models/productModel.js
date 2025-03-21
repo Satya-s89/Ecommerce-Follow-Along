@@ -20,7 +20,7 @@ const schema = mongoose.Schema({
         required: true
     },
     createdAt: {
-        type: Date.now,
+        type: Date,
         default: Date.now
     }
 });

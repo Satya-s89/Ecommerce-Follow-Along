@@ -1,7 +1,16 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
+
 const connect = require('connect');
 const userRouter = require('./controllers/userRouter');
+const productRouter = require("./controllers/productRouter");
+const dotenv = require('dotenv');
+dotenv.config();
+
+const mongoose = require('mongoose');
+const cors = require('cors');
+app.use('cors');
 
 app.get('/',(req,res)=>{
     try{
@@ -12,6 +21,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use("/user",userRouter);
+app.use("/products",productRouter);
 
 app.listen(8000,async()=>{
     try{

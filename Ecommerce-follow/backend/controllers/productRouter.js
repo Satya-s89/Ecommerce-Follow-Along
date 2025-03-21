@@ -7,10 +7,7 @@ productRouter.post("/addproducts",async(req,res,next)=>{
     productImages.array("images",6)(req,res,(err) => {
         if(err){
             return res.status(500).send({msg:"Something Went Wrong While uploading images"});
-        }
-
-        const images = req.files;
-        
+        }  
     })
 },async(req,res) => {
     try {
@@ -18,7 +15,18 @@ productRouter.post("/addproducts",async(req,res,next)=>{
         if(!title || !description || !price){
             return res.status(404).send({msg:"Please add all fields"});
         }
+
+        const images = req.files;
+        const imageLinkArray =[];
+        images.forEach((ele)=>{
+            console.log(ele);
+        })
+
+        return res.status(200).send({msg:"Product added sucessfully"})
+
     } catch (error) {
         return res.status(500).send({msg:"Internal Server Error"});
     }
 })
+
+module.exports = productRouter;
