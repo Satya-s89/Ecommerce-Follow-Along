@@ -124,12 +124,5 @@ Welcome to Milestone 12! This milestone focuses on creating a **My Products page
 
 ---
 
-## Key Highlights:
-- Understanding **data filtering** with specific constraints (e.g., email-based filtering).
-- Developing the communication flow between the backend and frontend.
-- Displaying dynamic data effectively using React components.
-
----
-
 
 
