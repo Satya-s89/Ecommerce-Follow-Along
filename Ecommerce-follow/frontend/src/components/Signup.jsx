@@ -1,58 +1,99 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './Signup.css';
+import React, { useState } from "react";
+import axios from "axios";
+import styles from "./Signup.module.css";
 
 const Signup = () => {
-  const [userDetail, setUserDetail] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
+    const [SignupData, setSignupData] = useState({
+        name: "",
+        email: "",
+        password: "",
+    });
 
-  function handleInput(e) {
-    setUserDetail({ ...userDetail, [e.target.name]: e.target.value });
-  }
+    const [image, setImage] = useState(null);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if (userDetail.name === '') {
-      alert('Please enter your name');
-      return;
-    }
-    if (userDetail.email === '') {
-      alert('Please enter your email');
-      return;
-    }
-    if (userDetail.password === '') {
-      alert('Please enter your password');
-      return;
+    function handleInput(e) {
+        setSignupData({ ...SignupData, [e.target.name]: e.target.value });
     }
 
-    try {
-      const response = await axios.post("http://localhost:8000/user/signup", userDetail);
-      console.log('Response:', response.data);
-      alert('Signup successful');
-    } catch (err) {
-      console.error("Error during signup:", err);
-      alert('Something went wrong');
-    }
-  }
+    async function handleSignup(event) {
+        event.preventDefault();
 
-  return (
-    <div className='signup'>
-      <h1>Sign up</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input type='text' name='name' placeholder='Name...' onChange={handleInput} />
-        <label htmlFor="email">Email</label>
-        <input type='email' name='email' placeholder='Email...' onChange={handleInput} />
-        <label htmlFor="password">Password</label>
-        <input type='password' name='password' placeholder='Password...' onChange={handleInput} />
-        <input type='submit' value="Sign Up" />
-      </form>
-    </div>
-  );
+        if (SignupData.email === "") {
+            alert("Please enter email...");
+            return;
+        }
+
+        if (SignupData.password === "") {
+            alert("Please enter password...");
+            return;
+        }
+
+        if (SignupData.name === "") {
+            alert("Please enter name...");
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append("name", SignupData.name);
+            formData.append("email", SignupData.email);
+            formData.append("password", SignupData.password);
+            if (image) {
+                formData.append("image", image);
+            }
+
+            await axios.post("http://localhost:8080/user/signup", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            alert("You successfully signed up!");
+        } catch (error) {
+            console.error(error);
+            alert("Something went wrong");
+        }
+    }
+
+    return (
+        <div>
+            <form onSubmit={handleSignup} className={styles.formbox}>
+                <label>Upload Your Image</label>
+                <input
+                    type="file"
+                    onChange={(event) => {
+                        console.log(event.target.files[0]);
+                        setImage(event.target.files[0]);
+                    }}
+                />
+                <label>Name</label>
+                <input
+                    type="text"
+                    placeholder="Name..."
+                    value={SignupData.name}
+                    name="name"
+                    onChange={handleInput}
+                />
+                <label>Email</label>
+                <input
+                    type="email"
+                    value={SignupData.email}
+                    name="email"
+                    onChange={handleInput}
+                    placeholder="Email..."
+                />
+                <label>Password</label>
+                <input
+                    type="password"
+                    value={SignupData.password}
+                    name="password"
+                    onChange={handleInput}
+                    placeholder="Password..."
+                />
+                <input type="submit" />
+            </form>
+        </div>
+    );
 };
 
 export default Signup;

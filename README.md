@@ -96,3 +96,40 @@
 
 ---
 
+Sure, here's a concise and engaging README file for Milestone 12 based on your instructions:
+
+---
+
+# Milestone 12: My Products Page 🌟
+
+Welcome to Milestone 12! This milestone focuses on creating a **My Products page** that displays all the products added by the user based on their email. By the end of this milestone, you will have learned how to build an endpoint in the backend to filter and send data from MongoDB and dynamically display this data on the frontend using pre-designed product cards.
+
+## Learning Goals 🎯
+
+- Create a backend endpoint to filter data by user email and send it to the client.
+- Learn how to fetch this data on the frontend.
+- Dynamically display product information using the Product Card component created earlier.
+
+---
+
+## Steps to Achieve Milestone 12 🛠️
+
+### Backend:
+1. Write an endpoint that queries MongoDB for products associated with the user's email.
+2. Return the filtered data to the frontend.
+
+### Frontend:
+1. Create a function to fetch data from the backend endpoint.
+2. Use the Product Card component to dynamically render the retrieved products.
+
+---
+
+## Key Highlights:
+- Understanding **data filtering** with specific constraints (e.g., email-based filtering).
+- Developing the communication flow between the backend and frontend.
+- Displaying dynamic data effectively using React components.
+
+---
+
+
+

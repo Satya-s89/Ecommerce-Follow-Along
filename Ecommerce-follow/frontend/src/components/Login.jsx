@@ -1,57 +1,51 @@
-import React, { useState } from 'react';
-import './Login.css';
 
+import React, { useState } from 'react'
+import styles from "./Login.module.css";
+import axios from 'axios';
 const Login = () => {
-  const [loginData, setLoginData] = useState({
-    email: '',
-    password: ''
-  });
+    const[loginData,setLoginData] = useState({
+        email:"",
+        password:""
+    })
 
-  function handelInput(e) {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
-  }
+    function handleInput(e){
+        setLoginData({...loginData,[e.target.name]:e.target.value})
+    }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (loginData.email === '') {
-      alert('Please enter email');
-      return;
+
+   async function handleLogin(event){
+        event.preventDefault();
+        if(loginData.email == ""){
+            alert("Please enter email...");
+            return;
+        }
+
+        if(loginData.password == ""){
+            alert("Please enter password...");
+            return;
+        }
+        try {
+            const checkUser = await axios.post("http://localhost:8080/user/login",loginData);
+            console.log(checkUser);
+            localStorage.setItem("Follow-along-auth-token",JSON.stringify(checkUser.data.token));
+            alert("You sucessfully loged in");
+        } catch (error) {
+            console.log(error);
+            alert("Something went Wrong");
+        }
     }
-    if (loginData.password === '') {
-      alert('Please enter password');
-      return;
-    }
-    alert('You successfully logged in');
-  }
 
   return (
-    <div className="container">
-    <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={loginData.email}
-            onChange={handelInput}
-            placeholder="Enter your email"
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={loginData.password}
-            onChange={handelInput}
-            placeholder="Enter your password"
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div>
+        <form onSubmit={handleLogin} className={styles.formbox} >
+            <label htmlFor="">Email</label>
+            <input type="email" value={loginData.email} name='email' onChange={handleInput} placeholder='Email...' />
+            <label>password</label>
+            <input type="password" value={loginData.password} name="password" onChange={handleInput} placeholder='password...' />
+            <input type="submit" />
+        </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
