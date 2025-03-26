@@ -30,7 +30,7 @@ app.use("/products",async(req,res,next) => {
             return res.status(401).send({msg:"Please Login"});
         }
 
-        var decoded = jwt.verify(auth ,process.env.JWT_PASSWORD);
+        const decoded = jwt.verify(auth ,process.env.JWT_PASSWORD);
         const user = await userModel.findOne({_id:decoded.id});
         if(!user){
             return res.status(401).send({msg:"Please signup"});

@@ -137,4 +137,18 @@ In this milestone, we have implemented the **edit functionality** for uploaded p
 ---
 
 
+# Milestone 14: Delete Product Functionality 🌟
+
+Welcome to Milestone 14! In this milestone, we enhance our product management system by implementing a delete functionality. Users will be able to remove products from MongoDB using a backend endpoint.
+
+**Backend:**  
+1. Create a DELETE endpoint in your server to handle requests to remove a product using its ID.  
+2. Implement logic to find and delete the product in MongoDB.
+
+**Frontend:**  
+1. Add a delete button to each product card.  
+2. On button click, send the product ID to the DELETE endpoint.  
+3. Update the UI to reflect the removal.
+
+
 

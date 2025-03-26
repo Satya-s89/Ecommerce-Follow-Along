@@ -28,16 +28,13 @@ userRouter.post("/signup", async (req, res) => {
                 return res.status(400).json({ message: "User Already Registered" });
             }
 
-            // Hash password securely
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-            // Handle image upload (if provided)
             const imageUrl = req.file 
                 ? `http://localhost:8080/uploads/userImages/${req.file.filename}`
                 : null;
 
-            // Create user
             const newUser = await userModel.create({ 
                 name, 
                 email, 
@@ -46,7 +43,7 @@ userRouter.post("/signup", async (req, res) => {
             });
 
             const token = jwt.sign({ name: newUser.name,email: newUser.email,id: newUser.id }, process.env.JWT_PASSWORD); 
-            return res.status(201).json({ message: "User registered successfully", token: token });
+            return res.status(201).json({ message: "User registered successfully", token: token, name, id:newUser.id});
         });
     } catch (error) {
         console.error("Signup Error:", error);
@@ -54,7 +51,6 @@ userRouter.post("/signup", async (req, res) => {
     }
 });
 
-// Login Route
 userRouter.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -69,7 +65,6 @@ userRouter.post("/login", async (req, res) => {
             return res.status(401).json({ message: "Invalid email or password" });
         }
 
-        // Corrected password comparison
         const matchedPass = bcrypt.compareSync(password, user.password);
 
         if (matchedPass) {
