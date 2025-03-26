@@ -1,70 +1,18 @@
+.formbox{
+  border: 5px solid blue;
+  margin: auto;
+  width: max-content;
+  align-items: center;
+  display: block;
+  padding: 0.5rem;
+}
 
+.formbox *{
+  display: block;
+  margin: auto;
+}
 
-body {
-    background-color: #f2f2f2;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .signup {
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .signup h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  
-  .signup form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .signup label {
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .signup input[type="text"],
-  .signup input[type="email"],
-  .signup input[type="password"] {
-    padding: 0.75rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
-  
-  .signup input[type="text"]:focus,
-  .signup input[type="email"]:focus,
-  .signup input[type="password"]:focus {
-    border-color: #007BFF;
-    outline: none;
-  }
-  
-  .signup input[type="submit"] {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .signup input[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  
+.formbox > input{
+  display: flex;                      
+  justify-content: start;
+}

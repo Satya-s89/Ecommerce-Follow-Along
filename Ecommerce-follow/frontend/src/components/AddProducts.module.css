@@ -1,0 +1,11 @@
+.formbox{
+    border: 3px solid blue;
+    width: auto;
+    padding: 2rem;
+}
+
+.formbox *{
+    margin: auto;
+    display: block;
+    
+}

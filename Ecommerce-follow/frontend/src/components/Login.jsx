@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react'
-import styles from "./Login.module.css";
+import styles from "./login.module.css";
 import axios from 'axios';
 const Login = () => {
     const[loginData,setLoginData] = useState({
@@ -26,13 +25,13 @@ const Login = () => {
         }
         try {
             const checkUser = await axios.post("http://localhost:8080/user/login",loginData);
-            console.log(checkUser);
-            localStorage.setItem("Follow-along-auth-token",JSON.stringify(checkUser.data.token));
+           console.log(checkUser)
+           localStorage.setItem("follow-along-auth-token-user-name-id",JSON.stringify({token:checkUser.data.token,name:checkUser.data.name,id:checkUser.data.id}))
             alert("You sucessfully loged in");
         } catch (error) {
             console.log(error);
-            alert("Something went Wrong");
-        }
+            alert("Someting went wrong while logging in");
+        }       
     }
 
   return (

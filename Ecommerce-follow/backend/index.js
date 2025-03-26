@@ -11,6 +11,8 @@ dotenv.config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 app.use('cors');
+const jwt = require('jsonwebtoken');
+const userModel = require('./models/userModel');
 
 app.get('/',(req,res)=>{
     try{
@@ -21,7 +23,25 @@ app.get('/',(req,res)=>{
 })
 
 app.use("/user",userRouter);
-app.use("/products",productRouter);
+app.use("/products",async(req,res,next) => {
+    try {
+        const auth = req.headers.authorization;
+        if(!auth){
+            return res.status(401).send({msg:"Please Login"});
+        }
+
+        var decoded = jwt.verify(auth ,process.env.JWT_PASSWORD);
+        const user = await userModel.findOne({_id:decoded.id});
+        if(!user){
+            return res.status(401).send({msg:"Please signup"});
+        }
+        
+        console.log(decoded);
+        next();
+    } catch (error) {
+        res.status(500).send({msg:"Something went wrong"},error);
+    }
+},productRouter);
 
 app.listen(8000,async()=>{
     try{

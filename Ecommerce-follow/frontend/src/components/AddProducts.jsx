@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import "./AddProducts.css"
 import axios from "axios"
+import styles from "./AddProducts.module.css"
 
 
 const AddProduct = () => {
@@ -19,9 +19,28 @@ async function handleSubmit(e) {
             alert("Please Add all fiels");
             return;
         }
-        const formData = new formData();
+
+        const token = JSON.parse(localStorage.getItem("follow-along-auth-token-user-name-id"));
+        if(!token){
+            alert("Please login first");
+            return;
+        }
+
         
-        await axios.post("http://localhost:8000/products/addproducts")
+        const formData = new formData();
+        formData.append("name",name);
+        formData.append("email",email);
+        formData.append("password",password);
+        for(let i=0;i<productImages.length();i++){
+            formData.append("image",productImages[i]);
+        }
+        
+        await axios.post("http://localhost:8080/user/login",formData,{
+            headers:{
+                "Authorization":token.token
+            }
+        });
+        
     } catch (error) {
         console.log(error);
         alert("Something went wrong while sending data");
@@ -29,7 +48,7 @@ async function handleSubmit(e) {
 }
   return (
     <div>
-        <form action="">
+        <form action="" className={styles.formbox} onSubmit={handleSubmit}>
             <input type="text" name={"title"} placeholder='Enter Title....' onChange={(event)=>{
                 setProductDetails({...productDetails,[event.target.name]:event.target.value});
             }}/>

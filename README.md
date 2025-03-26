@@ -79,7 +79,6 @@
 - Dynamically displayed the data on the homepage using the product card component.
 - Enhanced the UI by seamlessly integrating the backend with the frontend.
 
----
 
 ## **Tech Stack**
 ### Frontend:
@@ -96,10 +95,6 @@
 
 ---
 
-Sure, here's a concise and engaging README file for Milestone 12 based on your instructions:
-
----
-
 # Milestone 12: My Products Page 🌟
 
 Welcome to Milestone 12! This milestone focuses on creating a **My Products page** that displays all the products added by the user based on their email. By the end of this milestone, you will have learned how to build an endpoint in the backend to filter and send data from MongoDB and dynamically display this data on the frontend using pre-designed product cards.
@@ -110,10 +105,6 @@ Welcome to Milestone 12! This milestone focuses on creating a **My Products page
 - Learn how to fetch this data on the frontend.
 - Dynamically display product information using the Product Card component created earlier.
 
----
-
-## Steps to Achieve Milestone 12 🛠️
-
 ### Backend:
 1. Write an endpoint that queries MongoDB for products associated with the user's email.
 2. Return the filtered data to the frontend.
@@ -121,6 +112,27 @@ Welcome to Milestone 12! This milestone focuses on creating a **My Products page
 ### Frontend:
 1. Create a function to fetch data from the backend endpoint.
 2. Use the Product Card component to dynamically render the retrieved products.
+
+---
+
+# Milestone 13: Edit Functionality for Uploaded Products 🌟
+
+## Overview
+In this milestone, we have implemented the **edit functionality** for uploaded products. This includes adding an edit button to product cards, autofilling the form with existing data, and allowing users to update product details. The backend logic has been designed to ensure seamless data updates in the MongoDB database.
+
+## Steps Implemented 📝
+
+### Backend:
+1. Created an API endpoint in the backend to handle the update operation for product details.
+2. Validated incoming data to ensure integrity before updating the MongoDB database.
+3. Updated the database with the new product details.
+
+### Frontend:
+1. Added an **Edit** button to product cards.
+2. Upon clicking the Edit button:
+   - Passed the selected product’s data to the form.
+   - Autofilled the form with the product’s existing details for easy editing.
+3. Provided users the option to modify details and save changes.
 
 ---
 
