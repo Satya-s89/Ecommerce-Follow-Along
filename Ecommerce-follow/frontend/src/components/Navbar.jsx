@@ -1,36 +1,37 @@
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import styles from "./Navbar.module.css";
-
+import styles from "./navbar.module.css";
 const Navbar = () => {
     const navigate = useNavigate();
   return (
-    <div className={styles.navbar}>
     <div
-    onClick={()=>{
-        navigate("/");
-    }}>
-        <h1>Home</h1>
-    </div>
-
-    <div 
-    onClick={()=>{
-        navigate("/addproducts");
-    }}>
-        <p>Add Products</p>
-    </div>
-    
-    <div>
+    className={styles.navbar}
+    >
+        <div
+        onClick={()=>{
+            navigate("/");
+        }}
+        >
+            <h1>Home</h1>
+        </div>
+        <div>
+            <p onClick={()=>{
+                navigate("/addproducts");
+            }}>Add Products</p>
+        </div>
+        <div>
         <div
         onClick={()=>{
             navigate("/login");
-        }}>Login</div>
-        
+        }}
+        >Login</div>
         <div
         onClick={()=>{
             navigate("/signup");
-        }}>Signup</div>
-    </div>
-    
+        }}
+        >Signup</div>
+        </div>
+        
     </div>
   )
 }

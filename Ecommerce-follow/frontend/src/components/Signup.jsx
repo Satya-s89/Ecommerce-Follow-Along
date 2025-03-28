@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "./Signup.module.css";
+import styles from "./signup.module.css";
 
 const Signup = () => {
     const [SignupData, setSignupData] = useState({
@@ -58,10 +58,11 @@ const Signup = () => {
     return (
         <div>
             <form onSubmit={handleSignup} className={styles.formbox}>
-            {
-                image?<img src={URL.createObjectURL(image)}/>:""
-            }
+                {
+                    image?<img src={URL.createObjectURL(image)}/>:""
+                }
                 <label>Upload Your Image</label>
+                
                 <input
                     type="file"
                     onChange={(event) => {

@@ -1,54 +1,75 @@
-const express = require('express');
+const express = require("express");
+
 const app = express();
+
 app.use(express.json());
 
-const connect = require('connect');
-const userRouter = require('./controllers/userRouter');
-const productRouter = require("./controllers/productRouter");
-const dotenv = require('dotenv');
+const mongoose = require("mongoose");
+
+const dotenv = require("dotenv");
+
 dotenv.config();
 
-const mongoose = require('mongoose');
-const cors = require('cors');
-app.use('cors');
 const jwt = require('jsonwebtoken');
-const userModel = require('./models/userModel');
 
-app.get('/',(req,res)=>{
-    try{
-        res.status(200).send({message:"This is Ecommerce - code - along - Backend"})
-    }catch(err){
-        res.status(200).send({message: "something went wrong"})
+const userModel = require("./models/userModel");
+
+const cors = require("cors");
+
+app.use(cors());
+
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+
+console.log(MONGO_PASSWORD)
+
+const PORT = process.env.PORT || 8080;
+
+const useRouter = require("./controller/userRouter");
+
+const productRouter = require("./controller/productRouter");
+
+
+app.get("/",(req,res)=>{
+    try {
+        res.send({message:"This is E-commerce Follow Along Backend"});
+    } catch (error) {
+        res.status(500).send({error});
     }
 })
 
-app.use("/user",userRouter);
-app.use("/products",async(req,res,next) => {
-    try {
-        const auth = req.headers.authorization;
-        if(!auth){
-            return res.status(401).send({msg:"Please Login"});
-        }
+app.use("/user",useRouter);
 
-        const decoded = jwt.verify(auth ,process.env.JWT_PASSWORD);
-        const user = await userModel.findOne({_id:decoded.id});
-        if(!user){
-            return res.status(401).send({msg:"Please signup"});
+app.use("/product",async (req, res, next) => {
+    try {
+        const token = req.header("Authorization");
+        console.log(token)
+        if (!token) {
+            return res.status(401).json({ message: "Please login" });
         }
         
-        console.log(decoded);
+        const decoded = jwt.verify(token, process.env.JWT_PASSWORD);
+        const user = await userModel.findById(decoded.id);
+        
+        if (!user && user.id) {
+            return res.status(404).json({ message: "Please signup" });
+        }
+        console.log(user.id)
+        req.userId = user.id; 
         next();
     } catch (error) {
-        res.status(500).send({msg:"Something went wrong"},error);
+        console.log(error)
+        return res.status(400).json({ message: "Invalid Token", error });
     }
 },productRouter);
 
-app.listen(8000,async()=>{
-    try{
-      await connect();
-      console.log('server is connected');
-    }catch(err){
-    console.log('server is not connected', err);
+app.listen(PORT,async ()=>{
+    try {
+       await mongoose.connect(`mongodb+srv://abhishektiwari136136:${MONGO_PASSWORD}@cluster0.55lt4.mongodb.net/`);
+       console.log("Connected sucessfully");
+    } catch (error) {
+        console.log("Something went wrong not able to connect to server",error);
     }
-})
+});
+
+
 

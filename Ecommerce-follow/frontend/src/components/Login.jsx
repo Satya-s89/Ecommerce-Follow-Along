@@ -31,7 +31,10 @@ const Login = () => {
         } catch (error) {
             console.log(error);
             alert("Someting went wrong while logging in");
-        }       
+        }
+
+
+        
     }
 
   return (

@@ -120,8 +120,6 @@ Welcome to Milestone 12! This milestone focuses on creating a **My Products page
 ## Overview
 In this milestone, we have implemented the **edit functionality** for uploaded products. This includes adding an edit button to product cards, autofilling the form with existing data, and allowing users to update product details. The backend logic has been designed to ensure seamless data updates in the MongoDB database.
 
-## Steps Implemented 📝
-
 ### Backend:
 1. Created an API endpoint in the backend to handle the update operation for product details.
 2. Validated incoming data to ensure integrity before updating the MongoDB database.
