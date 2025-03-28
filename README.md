@@ -134,7 +134,6 @@ In this milestone, we have implemented the **edit functionality** for uploaded p
 
 ---
 
-
 # Milestone 14: Delete Product Functionality 🌟
 
 Welcome to Milestone 14! In this milestone, we enhance our product management system by implementing a delete functionality. Users will be able to remove products from MongoDB using a backend endpoint.
@@ -148,5 +147,22 @@ Welcome to Milestone 14! In this milestone, we enhance our product management sy
 2. On button click, send the product ID to the DELETE endpoint.  
 3. Update the UI to reflect the removal.
 
+---
 
+# Milestone 15: Navbar Component Creation 🚀
 
+## Overview 🌟
+Welcome to **Milestone 15**, Kalvians! In this milestone, we will focus on creating a reusable and responsive **Navbar Component** for our application. This Navbar will be integrated across multiple pages to ensure seamless navigation.
+
+### Learning Goals 🎯
+By the end of this milestone, you will:
+- Understand how to create a **Nav component** in React.
+- Learn how to reuse the same component across multiple pages.
+- Master the techniques for making a responsive Navbar that adapts to various screen sizes.
+
+## Key Features ✨
+- **Reusable Component**: A single Navbar used across all pages to maintain consistency.
+- **Smooth Navigation**: Effortless movement between pages.
+- **Responsive Design**: Adaptive layout for enhanced usability on all devices.
+
+---
