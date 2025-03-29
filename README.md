@@ -166,3 +166,9 @@ By the end of this milestone, you will:
 - **Responsive Design**: Adaptive layout for enhanced usability on all devices.
 
 ---
+
+## Milestone 16 :
+- **Product Info Page**: Added a page displaying product details dynamically.  
+- **Quantity Selector**: Included an input for selecting quantity.  
+- **Add to Cart**: Implemented functionality to add selected quantity to the cart.  
+- **Submission**: Code pushed to a public GitHub repository with an updated README.

@@ -3,7 +3,7 @@ import styles from "./card.module.css";
 const Card = ({product}) => {
   return (
     <div className={styles.card}>
-        <img className={styles.productImg} src={product.image} alt={product.title} />
+        <img className={styles.productImg} src={product.images[0]} alt={product.title} />
         <h3>{product.title}</h3>
         <p>${product.price}</p>
     </div>

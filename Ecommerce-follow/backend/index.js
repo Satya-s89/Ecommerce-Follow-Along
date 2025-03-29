@@ -11,6 +11,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const path = require('path');
+
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
 const JWT_PASSWORD = process.env.JWT_PASSWORD;
 const PORT = process.env.PORT || 8080;
@@ -52,6 +54,8 @@ app.use("/product",async (req, res, next) => {
 },productRouter);
 
 app.use("/allproducts",allProductRouter);
+
+app.use("/upload",express.static(path.join(__dirname,"uploads")));
 
 app.listen(PORT, async () => {
   try {
