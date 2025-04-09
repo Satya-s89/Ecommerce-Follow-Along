@@ -172,3 +172,10 @@ By the end of this milestone, you will:
 - **Quantity Selector**: Included an input for selecting quantity.  
 - **Add to Cart**: Implemented functionality to add selected quantity to the cart.  
 - **Submission**: Code pushed to a public GitHub repository with an updated README.
+
+---
+
+
+### **Milestone 17: Created ProducedDetail page**
+- create endpoints in backend *CRUD* for handling cart
+- Handled quantity in cart

@@ -14,6 +14,7 @@ const Products = () => {
         })
     }
 
+
     useEffect(()=>{
         getData();
     },[])

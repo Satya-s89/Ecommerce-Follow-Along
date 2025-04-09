@@ -4,8 +4,7 @@ import Products from './components/Products';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AddProduct from './components/AddProduct';
-import myProducts from './components/myProducts';
-
+import MyProducts from './components/MyProducts';
 const AllRouting = () => {
   return (
     <Routes>
@@ -13,7 +12,7 @@ const AllRouting = () => {
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/addproducts' element={<AddProduct/>}/>
-        <Route path='/myproducts' element={<myProducts/>}/>
+        <Route path='/myproducts' element={<MyProducts/>}/>
     </Routes>
   )
 }
