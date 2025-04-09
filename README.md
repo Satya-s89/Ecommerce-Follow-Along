@@ -175,7 +175,12 @@ By the end of this milestone, you will:
 
 ---
 
-
 ### **Milestone 17: Created ProducedDetail page**
 - create endpoints in backend *CRUD* for handling cart
 - Handled quantity in cart
+
+---
+
+### **Milestone 18: Created Frontend for the Cart page**
+- created the cart page in frontend
+- Handled cart operations from frontend
