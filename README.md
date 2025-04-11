@@ -184,3 +184,8 @@ By the end of this milestone, you will:
 ### **Milestone 18: Created Frontend for the Cart page**
 - created the cart page in frontend
 - Handled cart operations from frontend
+
+---
+
+### **🛠️ Milestone 19: Backend endpoint for cart item quantity**
+- created put request for updating quantity for cart item.
