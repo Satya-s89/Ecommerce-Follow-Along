@@ -189,3 +189,9 @@ By the end of this milestone, you will:
 
 ### **🛠️ Milestone 19: Backend endpoint for cart item quantity**
 - created put request for updating quantity for cart item.
+
+---
+
+### **Milestone 20: Backend endpoint for UserDetails**
+- created endpoint for userdetails in backend
+- created *user.jsx* for user details in frontend
