@@ -195,3 +195,10 @@ By the end of this milestone, you will:
 ### **Milestone 20: Backend endpoint for UserDetails**
 - created endpoint for userdetails in backend
 - created *user.jsx* for user details in frontend
+
+---
+
+### **Milestone 21: Created frontend for frontend**
+- created route for Add Address page in Frontend
+- created form for adding address
+- Stored address using useState Hook
