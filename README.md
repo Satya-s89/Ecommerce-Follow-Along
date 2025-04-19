@@ -198,7 +198,13 @@ By the end of this milestone, you will:
 
 ---
 
-### **Milestone 21: Created frontend for frontend**
+### **Milestone 21: Created frontend for Address**
 - created route for Add Address page in Frontend
 - created form for adding address
 - Stored address using useState Hook
+
+---
+
+### **Milsestone 22: Created backend for address and attached with frontend**
+- created backend endpoint for handling address
+- added backend endpoint with frontend
