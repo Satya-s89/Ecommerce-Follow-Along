@@ -208,3 +208,10 @@ By the end of this milestone, you will:
 ### **Milsestone 22: Created backend for address and attached with frontend**
 - created backend endpoint for handling address
 - added backend endpoint with frontend
+
+---
+
+### **🛠️ Milestone 23 worked on address in frontend and backend
+- created placeorder button in cart page and added navigation to select address
+- created select address page and provided option to select one address.
+- created backend endpoint to sent all address to user.
