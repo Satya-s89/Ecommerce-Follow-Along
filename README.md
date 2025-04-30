@@ -167,7 +167,7 @@ By the end of this milestone, you will:
 
 ---
 
-## Milestone 16 :
+## **🛠️ Milestone 16 :**
 - **Product Info Page**: Added a page displaying product details dynamically.  
 - **Quantity Selector**: Included an input for selecting quantity.  
 - **Add to Cart**: Implemented functionality to add selected quantity to the cart.  
@@ -175,13 +175,13 @@ By the end of this milestone, you will:
 
 ---
 
-### **Milestone 17: Created ProducedDetail page**
+### **🛠️ Milestone 17: Created ProducedDetail page**
 - create endpoints in backend *CRUD* for handling cart
 - Handled quantity in cart
 
 ---
 
-### **Milestone 18: Created Frontend for the Cart page**
+### **🛠️ Milestone 18: Created Frontend for the Cart page**
 - created the cart page in frontend
 - Handled cart operations from frontend
 
@@ -192,20 +192,20 @@ By the end of this milestone, you will:
 
 ---
 
-### **Milestone 20: Backend endpoint for UserDetails**
+### **🛠️ Milestone 20: Backend endpoint for UserDetails**
 - created endpoint for userdetails in backend
 - created *user.jsx* for user details in frontend
 
 ---
 
-### **Milestone 21: Created frontend for Address**
+### **🛠️ Milestone 21: Created frontend for Address**
 - created route for Add Address page in Frontend
 - created form for adding address
 - Stored address using useState Hook
 
 ---
 
-### **Milsestone 22: Created backend for address and attached with frontend**
+### **🛠️ Milsestone 22: Created backend for address and attached with frontend**
 - created backend endpoint for handling address
 - added backend endpoint with frontend
 
@@ -227,7 +227,12 @@ By the end of this milestone, you will:
 ---
 
 ### **🛠️ Milestone 25 worked on order backend and email service
-
 - created endpoint for order.
 - implemented mail service from nodemailer.
 - handled address for the delivery.
+
+---
+
+### **🛠️ Milestone 26 worked on order backend and email service
+- Implemented mail with nodemailer.
+- Sending order details to user via mail.
