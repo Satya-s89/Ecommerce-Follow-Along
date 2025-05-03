@@ -211,14 +211,14 @@ By the end of this milestone, you will:
 
 ---
 
-### **🛠️ Milestone 23 worked on address in frontend and backend
+### **🛠️ Milestone 23 worked on address in frontend and backend**
 - created placeorder button in cart page and added navigation to select address
 - created select address page and provided option to select one address.
 - created backend endpoint to sent all address to user.
 
 ---
 
-### **🛠️ Milestone 24 worked on address in frontend and backend
+### **🛠️ Milestone 24 worked on address in frontend and backend**
 - Displayed all of products in cart.
 - Displayed All address in address selection page.
 - Displayed total price in cart.
@@ -226,13 +226,18 @@ By the end of this milestone, you will:
 
 ---
 
-### **🛠️ Milestone 25 worked on order backend and email service
+### **🛠️ Milestone 25 worked on order backend and email service**
 - created endpoint for order.
 - implemented mail service from nodemailer.
 - handled address for the delivery.
 
 ---
 
-### **🛠️ Milestone 26 worked on order backend and email service
+### **🛠️ Milestone 26 worked on order backend and email service**
 - Implemented mail with nodemailer.
 - Sending order details to user via mail.
+
+---
+
+### ** Milestone 27: Created Order page in frontend**
+- Created get Request for orders
