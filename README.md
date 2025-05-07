@@ -241,3 +241,12 @@ By the end of this milestone, you will:
 
 ### ** Milestone 27: Created Order page in frontend**
 - Created get Request for orders
+
+---
+
+### ** Milestone 28: Created Order page in frontend**
+- Created get Request for orders
+- Created order page in frontend
+- Created order card component
+- Created order details page
+- Created order details card component
