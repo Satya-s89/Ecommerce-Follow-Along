@@ -245,8 +245,4 @@ By the end of this milestone, you will:
 ---
 
 ### ** Milestone 28: Created Order page in frontend**
-- Created get Request for orders
-- Created order page in frontend
-- Created order card component
-- Created order details page
-- Created order details card component
+- Added cancel button in my-orders and create an backend endpoint for cancel order.
