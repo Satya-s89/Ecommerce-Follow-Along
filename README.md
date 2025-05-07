@@ -246,3 +246,10 @@ By the end of this milestone, you will:
 
 ### ** Milestone 28: Created Order page in frontend**
 - Added cancel button in my-orders and create an backend endpoint for cancel order.
+
+---
+
+### ** Milestone 29: Created Order page in frontend**
+- Created a payment gateway for payment of order.
+- Created an endpoint for payment.
+- Created an endpoint for payment verification.
