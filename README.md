@@ -253,3 +253,12 @@ By the end of this milestone, you will:
 - Created a payment gateway for payment of order.
 - Created an endpoint for payment.
 - Created an endpoint for payment verification.
+
+---
+
+### ** Milestone 30: Created Order page in frontend**
+- Created a payment gateway for payment of order.
+- Created an endpoint for payment.
+- Created an endpoint for payment verification.
+- Created a success page for payment.
+- Created a failure page for payment.
