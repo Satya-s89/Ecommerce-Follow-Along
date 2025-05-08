@@ -262,3 +262,9 @@ By the end of this milestone, you will:
 - Created an endpoint for payment verification.
 - Created a success page for payment.
 - Created a failure page for payment.
+
+---
+
+### ** Milestone 31: Redux Implementation**
+- Implemented Redux for state management.
+- Used Redux in User details page
