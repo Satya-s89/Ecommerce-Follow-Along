@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { loginUser, clearAuthStatus } from "../store/slices/authSlice";
+import { fetchCartItems } from "../store/slices/cartSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { status, error } = useSelector((state) => state.auth);
+
+  // Get the redirect path from location state or default to home
+  const from = location.state?.from || '/';
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -25,10 +30,16 @@ const Login = () => {
   // Handle successful login
   useEffect(() => {
     if (status === 'succeeded') {
+      // Fetch cart items after successful login
+      dispatch(fetchCartItems());
+
+      // Show success message
       alert("You successfully logged in!");
-      navigate('/'); // Redirect to home page
+
+      // Redirect to the page user was trying to access or home
+      navigate(from);
     }
-  }, [status, navigate]);
+  }, [status, navigate, from, dispatch]);
 
   function handleInput(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });

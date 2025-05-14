@@ -239,24 +239,24 @@ By the end of this milestone, you will:
 
 ---
 
-### ** Milestone 27: Created Order page in frontend**
+### **🛠️ Milestone 27: Created Order page in frontend**
 - Created get Request for orders
 
 ---
 
-### ** Milestone 28: Created Order page in frontend**
+### **🛠️ Milestone 28: Created Order page in frontend**
 - Added cancel button in my-orders and create an backend endpoint for cancel order.
 
 ---
 
-### ** Milestone 29: Created Order page in frontend**
+### **🛠️ Milestone 29: Created Order page in frontend**
 - Created a payment gateway for payment of order.
 - Created an endpoint for payment.
 - Created an endpoint for payment verification.
 
 ---
 
-### ** Milestone 30: Created Order page in frontend**
+### **🛠️ Milestone 30: Created Order page in frontend**
 - Created a payment gateway for payment of order.
 - Created an endpoint for payment.
 - Created an endpoint for payment verification.
@@ -265,7 +265,7 @@ By the end of this milestone, you will:
 
 ---
 
-### **Milestone 31: Redux Implementation** ✅
+### **🛠️ Milestone 31: Redux Implementation**
 - Implemented Redux for state management using Redux Toolkit.
 - Created Redux store with multiple slices (user, auth, cart, products).
 - Implemented async thunks for API calls.
@@ -276,12 +276,18 @@ By the end of this milestone, you will:
 
 ---
 
-### ** Milestone 32: Redux Implementation**
-- Used Redux in All pages
+### **🛠️ Milestone 32: JWT Authentication with Redux** ✅
+- Implemented JWT token authentication with Redux
+- Created API utility with axios interceptors for automatic token handling
+- Added token expiration handling and automatic logout
+- Protected routes with PrivateRoute component
+- Enhanced Navbar with conditional rendering based on authentication state
+- Improved Login and Signup components with Redux integration
+- Added loading states and error handling for authentication
 
 ---
 
-### ** Milstone 33: Jwt token used**
+### **🛠️ Milstone 33: Jwt token used**
 - Used JWT token for authentication
 - Used JWT token for authorization
 - Used JWT token for authentication in frontend

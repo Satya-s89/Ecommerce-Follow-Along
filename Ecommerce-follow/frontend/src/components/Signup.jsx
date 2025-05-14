@@ -1,8 +1,14 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signupUser, clearSignupStatus } from "../store/slices/authSlice";
 
 const Signup = () => {
-  const [SignupData, setSignupData] = useState({
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { signupStatus, error } = useSelector((state) => state.auth);
+
+  const [signupData, setSignupData] = useState({
     name: "",
     email: "",
     password: "",
@@ -11,52 +17,55 @@ const Signup = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
 
+  // Clear signup status when component unmounts
+  useEffect(() => {
+    return () => {
+      dispatch(clearSignupStatus());
+    };
+  }, [dispatch]);
+
+  // Handle successful signup
+  useEffect(() => {
+    if (signupStatus === 'succeeded') {
+      alert("You successfully signed up! Please login.");
+      navigate('/login');
+    }
+  }, [signupStatus, navigate]);
+
   function handleInput(e) {
-    setSignupData({ ...SignupData, [e.target.name]: e.target.value });
+    setSignupData({ ...signupData, [e.target.name]: e.target.value });
   }
 
   const validateForm = () => {
     const newErrors = {};
-    if (!SignupData.name) newErrors.name = "Name is required.";
-    if (!SignupData.email) {
+    if (!signupData.name) newErrors.name = "Name is required.";
+    if (!signupData.email) {
       newErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(SignupData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(signupData.email)) {
       newErrors.email = "Please enter a valid email address.";
     }
-    if (!SignupData.password) {
+    if (!signupData.password) {
       newErrors.password = "Password is required.";
-    } else if (SignupData.password.length < 6) {
+    } else if (signupData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters long.";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  async function handleSignup(event) {
+  function handleSignup(event) {
     event.preventDefault();
 
     if (!validateForm()) return;
 
-    try {
-      const formData = new FormData();
-      formData.append("name", SignupData.name);
-      formData.append("email", SignupData.email);
-      formData.append("password", SignupData.password);
-      if (image) {
-        formData.append("image", image);
-      }
+    // Create signup data with image
+    const signupFormData = {
+      ...signupData,
+      image: image
+    };
 
-      await axios.post("http://localhost:8080/user/signup", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      alert("You successfully signed up!");
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong");
-    }
+    // Dispatch signup action
+    dispatch(signupUser(signupFormData));
   }
 
   return (
@@ -68,6 +77,13 @@ const Signup = () => {
         <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
           Signup
         </h2>
+
+        {/* Server Error Message */}
+        {signupStatus === 'failed' && (
+          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            {error || "Signup failed. Please try again."}
+          </div>
+        )}
 
         {/* Image Preview */}
         {image && (
@@ -89,6 +105,7 @@ const Signup = () => {
             type="file"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             onChange={(event) => setImage(event.target.files[0])}
+            disabled={signupStatus === 'loading'}
           />
         </div>
 
@@ -98,9 +115,10 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Name..."
-            value={SignupData.name}
+            value={signupData.name}
             name="name"
             onChange={handleInput}
+            disabled={signupStatus === 'loading'}
             className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               errors.name ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
             }`}
@@ -114,9 +132,10 @@ const Signup = () => {
           <input
             type="email"
             placeholder="Email..."
-            value={SignupData.email}
+            value={signupData.email}
             name="email"
             onChange={handleInput}
+            disabled={signupStatus === 'loading'}
             className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               errors.email ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
             }`}
@@ -130,9 +149,10 @@ const Signup = () => {
           <input
             type="password"
             placeholder="Password..."
-            value={SignupData.password}
+            value={signupData.password}
             name="password"
             onChange={handleInput}
+            disabled={signupStatus === 'loading'}
             className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               errors.password ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
             }`}
@@ -145,9 +165,14 @@ const Signup = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+          disabled={signupStatus === 'loading'}
+          className={`w-full py-2 rounded-md transition ${
+            signupStatus === 'loading'
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-blue-500 hover:bg-blue-600 text-white'
+          }`}
         >
-          Signup
+          {signupStatus === 'loading' ? 'Signing up...' : 'Signup'}
         </button>
       </form>
     </div>
