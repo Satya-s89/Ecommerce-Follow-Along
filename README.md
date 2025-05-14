@@ -138,13 +138,13 @@ In this milestone, we have implemented the **edit functionality** for uploaded p
 
 Welcome to Milestone 14! In this milestone, we enhance our product management system by implementing a delete functionality. Users will be able to remove products from MongoDB using a backend endpoint.
 
-**Backend:**  
-1. Create a DELETE endpoint in your server to handle requests to remove a product using its ID.  
+**Backend:**
+1. Create a DELETE endpoint in your server to handle requests to remove a product using its ID.
 2. Implement logic to find and delete the product in MongoDB.
 
-**Frontend:**  
-1. Add a delete button to each product card.  
-2. On button click, send the product ID to the DELETE endpoint.  
+**Frontend:**
+1. Add a delete button to each product card.
+2. On button click, send the product ID to the DELETE endpoint.
 3. Update the UI to reflect the removal.
 
 ---
@@ -168,9 +168,9 @@ By the end of this milestone, you will:
 ---
 
 ## **🛠️ Milestone 16 :**
-- **Product Info Page**: Added a page displaying product details dynamically.  
-- **Quantity Selector**: Included an input for selecting quantity.  
-- **Add to Cart**: Implemented functionality to add selected quantity to the cart.  
+- **Product Info Page**: Added a page displaying product details dynamically.
+- **Quantity Selector**: Included an input for selecting quantity.
+- **Add to Cart**: Implemented functionality to add selected quantity to the cart.
 - **Submission**: Code pushed to a public GitHub repository with an updated README.
 
 ---
@@ -265,6 +265,18 @@ By the end of this milestone, you will:
 
 ---
 
-### ** Milestone 31: Redux Implementation**
-- Implemented Redux for state management.
-- Used Redux in User details page
+### **Milestone 31: Redux Implementation** ✅
+- Implemented Redux for state management using Redux Toolkit.
+- Created Redux store with multiple slices (user, auth, cart, products).
+- Implemented async thunks for API calls.
+- Refactored User details page to use Redux for state management.
+- Added loading states and error handling with Redux.
+- Refactored Login component to use Redux authentication.
+- Refactored Products and Cart components to use Redux.
+
+---
+
+### ** Milestone 32: Redux Implementation**
+- Used Redux in All pages
+
+---

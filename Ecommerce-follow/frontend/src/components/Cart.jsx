@@ -1,69 +1,27 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartItems, updateCartItemQuantity } from "../store/slices/cartSlice";
 import CartCard from "./CartCard.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const [products, setProducts] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const dispatch = useDispatch();
+  const { items, totalPrice, status, error } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
-  async function getData() {
-    try {
-      const userData = JSON.parse(
-        localStorage.getItem("follow-along-auth-token-user-name-id")
-      );
-      const getCartData = await axios.get("http://localhost:8080/cart", {
-        headers: {
-          Authorization: userData.token,
-        },
-      });
-
-      const cartProducts = getCartData.data.cartProducts;
-      let sum = 0;
-      cartProducts.forEach((ele) => {
-        sum += ele.price * ele.quantity;
-      });
-
-      setTotalPrice(sum);
-      setProducts(cartProducts);
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong while fetching cart data.");
-    }
-  }
-
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(fetchCartItems());
+  }, [dispatch]);
 
-  const handleQuantityChange = async (id, quantity) => {
-    try {
-      const userData = JSON.parse(
-        localStorage.getItem("follow-along-auth-token-user-name-id")
-      );
+  const handleQuantityChange = (id, quantity) => {
+    // Dispatch the update action
+    dispatch(updateCartItemQuantity({ productId: id, quantity }));
 
-      if (quantity === 0) {
-        await axios.put(`http://localhost:8080/cart/${id}?noofcartitem=0`, {
-          headers: {
-            Authorization: userData.token,
-          },
-        });
-        setProducts(products.filter((product) => product._id !== id));
-      } else {
-        await axios.put(
-          `http://localhost:8080/cart/${id}?noofcartitem=${quantity}`,
-          {
-            headers: {
-              Authorization: userData.token,
-            },
-          }
-        );
-        getData();
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong while updating quantity.");
+    // If quantity is 0, refresh the cart to remove the item
+    if (quantity === 0) {
+      setTimeout(() => {
+        dispatch(fetchCartItems());
+      }, 500);
     }
   };
 
@@ -73,32 +31,64 @@ const Cart = () => {
         <h1 className="text-3xl font-bold text-center text-blue-600 mb-8">
           Your Cart
         </h1>
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">
-          Total Price: ${totalPrice.toFixed(2)}
-        </h2>
-        {products.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
-              <CartCard
-                key={product._id}
-                product={product}
-                onQuantityChange={handleQuantityChange}
-              />
-            ))}
+
+        {/* Loading State */}
+        {status === 'loading' && (
+          <div className="text-center py-8">
+            <p className="text-gray-600">Loading cart items...</p>
           </div>
-        ) : (
-          <p className="text-center text-gray-600">Your cart is empty.</p>
         )}
-        <button
-          className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition mt-6 block mx-auto"
-          onClick={() =>
-            navigate("/checkout", {
-              state: { cartProducts: products },
-            })
-          }
-        >
-          Proceed to Checkout
-        </button>
+
+        {/* Error State */}
+        {status === 'failed' && (
+          <div className="text-center py-8">
+            <p className="text-red-500">Error: {error || "Failed to load cart items"}</p>
+          </div>
+        )}
+
+        {/* Cart Content */}
+        {status === 'succeeded' && (
+          <>
+            <h2 className="text-xl font-semibold text-gray-700 mb-4">
+              Total Price: ${totalPrice.toFixed(2)}
+            </h2>
+
+            {items.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {items.map((product) => (
+                    <CartCard
+                      key={product._id}
+                      product={product}
+                      onQuantityChange={handleQuantityChange}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition mt-6 block mx-auto"
+                  onClick={() =>
+                    navigate("/checkout", {
+                      state: { cartProducts: items },
+                    })
+                  }
+                >
+                  Proceed to Checkout
+                </button>
+              </>
+            ) : (
+              <div className="text-center">
+                <p className="text-gray-600 mb-4">Your cart is empty.</p>
+                <button
+                  className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+                  onClick={() => navigate("/")}
+                >
+                  Continue Shopping
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
