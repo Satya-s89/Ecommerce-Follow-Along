@@ -280,3 +280,8 @@ By the end of this milestone, you will:
 - Used Redux in All pages
 
 ---
+
+### ** Milstone 33: Jwt token used**
+- Used JWT token for authentication
+- Used JWT token for authorization
+- Used JWT token for authentication in frontend
