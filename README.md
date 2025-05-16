@@ -291,3 +291,10 @@ By the end of this milestone, you will:
 - Used JWT token for authentication
 - Used JWT token for authorization
 - Used JWT token for authentication in frontend
+
+---
+
+### **🛠️ Milestone 34: Setting up tokens in the cookies**
+- Implemented JWT token in cookies
+- Implemented JWT token in cookies in frontend
+- Implemented JWT token in cookies in backend
