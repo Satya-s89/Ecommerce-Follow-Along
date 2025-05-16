@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Routes} from "react-router-dom";
+import {Route,Routes} from "react-router-dom";
 import Products from './components/Products';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -12,65 +12,23 @@ import AllAddress from './components/AllAddress';
 import Checkout from './components/Checkout';
 import MyOrders from './components/MyOrders';
 import Payment from './components/Payment';
-import PrivateRoute from './components/PrivateRoute';
-
 const AllRouting = () => {
   return (
     <Routes>
-        {/* Public Routes */}
         <Route path='/' element={<Products/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
-
-        {/* Protected Routes */}
-        <Route path='/addproducts' element={
-          <PrivateRoute>
-            <AddProduct/>
-          </PrivateRoute>
-        }/>
-        <Route path='/myproducts' element={
-          <PrivateRoute>
-            <MyProducts/>
-          </PrivateRoute>
-        }/>
-        <Route path='/cart' element={
-          <PrivateRoute>
-            <Cart/>
-          </PrivateRoute>
-        }/>
-        <Route path='/user' element={
-          <PrivateRoute>
-            <User/>
-          </PrivateRoute>
-        }/>
-        <Route path='/user-address' element={
-          <PrivateRoute>
-            <UserAddress/>
-          </PrivateRoute>
-        }/>
-        <Route path='/all-address' element={
-          <PrivateRoute>
-            <AllAddress/>
-          </PrivateRoute>
-        }/>
-        <Route path='/checkout' element={
-          <PrivateRoute>
-            <Checkout/>
-          </PrivateRoute>
-        }/>
-        <Route path='/myorders' element={
-          <PrivateRoute>
-            <MyOrders/>
-          </PrivateRoute>
-        }/>
-        <Route path='/payment' element={
-          <PrivateRoute>
-            <Payment/>
-          </PrivateRoute>
-        }/>
-
-        {/* 404 Route */}
+        <Route path='/addproducts' element={<AddProduct/>}/>
+        <Route path='/myproducts' element={<MyProducts/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/user' element={<User/>}/>
+        <Route path='/user-address' element={<UserAddress/>}/>
+        <Route path='/all-address' element={<AllAddress/>} />
+        <Route path='/checkout' element={<Checkout/>} />
+        <Route path='/myorders' element={<MyOrders/>} />
+        <Route path='/payment' element={<Payment/>}/>
         <Route path='*' element={<h1>404 Not Found</h1>} />
+        
     </Routes>
   )
 }

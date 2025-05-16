@@ -1,45 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
-import { loginUser, clearAuthStatus } from "../store/slices/authSlice";
-import { fetchCartItems } from "../store/slices/cartSlice";
+import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { status, error } = useSelector((state) => state.auth);
-
-  // Get the redirect path from location state or default to home
-  const from = location.state?.from || '/';
-
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({});
-
-  // Clear auth status when component unmounts
-  useEffect(() => {
-    return () => {
-      dispatch(clearAuthStatus());
-    };
-  }, [dispatch]);
-
-  // Handle successful login
-  useEffect(() => {
-    if (status === 'succeeded') {
-      // Fetch cart items after successful login
-      dispatch(fetchCartItems());
-
-      // Show success message
-      alert("You successfully logged in!");
-
-      // Redirect to the page user was trying to access or home
-      navigate(from);
-    }
-  }, [status, navigate, from, dispatch]);
 
   function handleInput(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -64,8 +32,28 @@ const Login = () => {
 
     if (!validateForm()) return;
 
-    // Dispatch login action
-    dispatch(loginUser(loginData));
+    try {
+      const checkUser = await axios.post(
+        "https://ecommerce-follow-along-ffxu.onrender.com/user/login",
+        loginData,{
+          withCredentials: true,
+        }
+      );
+      console.log(checkUser);
+      localStorage.setItem(
+        "follow-along-auth-token-user-name-id",
+        JSON.stringify({
+          token: checkUser.data.token,
+          name: checkUser.data.name,
+          id: checkUser.data.id,
+          userImage: checkUser.data.userImage,
+        })
+      );
+      alert("You successfully logged in!");
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong while logging in.");
+    }
   }
 
   return (
@@ -78,13 +66,6 @@ const Login = () => {
           Login
         </h2>
 
-        {/* Server Error Message */}
-        {status === 'failed' && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-            {error || "Login failed. Please try again."}
-          </div>
-        )}
-
         {/* Email Input */}
         <div className="mb-4">
           <label className="block text-gray-700 font-medium mb-2">Email</label>
@@ -94,7 +75,6 @@ const Login = () => {
             value={loginData.email}
             name="email"
             onChange={handleInput}
-            disabled={status === 'loading'}
             className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               errors.email ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
             }`}
@@ -111,7 +91,6 @@ const Login = () => {
             value={loginData.password}
             name="password"
             onChange={handleInput}
-            disabled={status === 'loading'}
             className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               errors.password
                 ? "border-red-500 focus:ring-red-500"
@@ -126,14 +105,9 @@ const Login = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={status === 'loading'}
-          className={`w-full py-2 rounded-md transition ${
-            status === 'loading'
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-blue-500 hover:bg-blue-600 text-white'
-          }`}
+          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
         >
-          {status === 'loading' ? 'Logging in...' : 'Login'}
+          Login
         </button>
       </form>
     </div>
