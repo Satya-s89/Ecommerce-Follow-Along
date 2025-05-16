@@ -7,7 +7,7 @@ const Products = () => {
 
   function getData() {
     axios
-      .get("https://ecommerce-follow-along-ffxu.onrender.com/allproducts")
+      .get("https://ecommerce-follow-along-2-qe55.onrender.com/allproducts")
       .then((data) => {
         console.log(data);
         setProducts(data.data.products);

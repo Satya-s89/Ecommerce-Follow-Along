@@ -13,7 +13,7 @@ const Cart = () => {
       const userData = JSON.parse(
         localStorage.getItem("follow-along-auth-token-user-name-id")
       );
-      const getCartData = await axios.get("https://ecommerce-follow-along-ffxu.onrender.com/cart", {
+      const getCartData = await axios.get("https://ecommerce-follow-along-2-qe55.onrender.com/cart", {
         headers: {
           Authorization: userData.token,
         },
@@ -44,7 +44,7 @@ const Cart = () => {
       );
 
       if (quantity === 0) {
-        await axios.put(`https://ecommerce-follow-along-ffxu.onrender.com/cart/${id}?noofcartitem=0`, {
+        await axios.put(`https://ecommerce-follow-along-2-qe55.onrender.com/cart/${id}?noofcartitem=0`, {
           headers: {
             Authorization: userData.token,
           },
@@ -56,7 +56,7 @@ const Cart = () => {
         setProducts(products.filter((product) => product._id !== id));
       } else {
         await axios.put(
-          `https://ecommerce-follow-along-ffxu.onrender.com/cart/${id}?noofcartitem=${quantity}`,
+          `https://ecommerce-follow-along-2-qe55.onrender.com/cart/${id}?noofcartitem=${quantity}`,
           {
             headers: {
               Authorization: userData.token,

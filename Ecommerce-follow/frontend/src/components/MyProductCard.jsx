@@ -12,7 +12,7 @@ const MyProductCard = ({ product, onEdit, onDelete }) => {
         return;
       }
 
-      await axios.delete(`https://ecommerce-follow-along-ffxu.onrender.com/product/delete/${id}`, {
+      await axios.delete(`https://ecommerce-follow-along-2-qe55.onrender.com/product/delete/${id}`, {
         headers: {
           Authorization: token.token,
         },

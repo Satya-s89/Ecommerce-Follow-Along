@@ -34,7 +34,7 @@ const Login = () => {
 
     try {
       const checkUser = await axios.post(
-        "https://ecommerce-follow-along-ffxu.onrender.com/user/login",
+        "https://ecommerce-follow-along-2-qe55.onrender.com/user/login",
         loginData,{
           withCredentials: true,
         }
