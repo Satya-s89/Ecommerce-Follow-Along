@@ -1,26 +1,28 @@
 const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const jwt = require('jsonwebtoken');
+const cors = require("cors");
+const cookieParser = require('cookie-parser');
+
+// Load environment variables
+dotenv.config();
+
+const userModel = require("./models/userModel");
+const cartRouter = require("./controller/cartProducts");
 
 const app = express();
 
+// Middleware
 app.use(express.json());
+app.use(cookieParser());
 
-const path = require("path");
-
-const mongoose = require("mongoose");
-
-const dotenv = require("dotenv");
-
-dotenv.config();
-
-const jwt = require('jsonwebtoken');
-
-const userModel = require("./models/userModel");
-
-const cors = require("cors");
-
-const cartRouter = require("./controller/cartProducts");
-
-app.use(cors());
+// Configure CORS to allow credentials
+app.use(cors({
+  origin: 'http://localhost:5174', // Update this to match your frontend URL
+  credentials: true // Allow cookies to be sent
+}));
 
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
 
@@ -28,18 +30,16 @@ console.log(MONGO_PASSWORD)
 
 const PORT = process.env.PORT || 8080;
 
+// Import routers
 const useRouter = require("./controller/userRouter");
-
 const productRouter = require("./controller/productRouter");
-
 const allProductRouter = require("./controller/allProducts");
-
 const addressRouter = require("./controller/addressRouter");
-
-
-const mailer = require("./nodemailer");
-
 const orderRouter = require("./controller/orderRouter");
+
+// Import middleware
+const authMiddleware = require("./middleware/authMiddleware");
+const mailer = require("./nodemailer");
 
 
 app.get("/",(req,res)=>{
@@ -52,106 +52,18 @@ app.get("/",(req,res)=>{
 
 app.use("/user",useRouter);
 
-app.use("/product",async (req, res, next) => {
-    try {
-        const token = req.header("Authorization");
-        console.log(token)
-        if (!token) {
-            return res.status(401).json({ message: "Please login" });
-        }
-        
-        const decoded = jwt.verify(token, process.env.JWT_PASSWORD);
-        const user = await userModel.findById(decoded.id);
-        
-        if (!user && user.id) {
-            return res.status(404).json({ message: "Please signup" });
-        }
-        console.log(user.id)
-        req.userId = user.id; 
-        next();
-    } catch (error) {
-        console.log(error)
-        return res.status(400).json({ message: "Invalid Token", error });
-    }
-},productRouter);
+// Product routes - protected by auth middleware
+app.use("/product", authMiddleware, productRouter);
 
-app.use("/cart",
-    async (req, res, next) => {
-        console.log("cart")
-        try {
-            const token = req.header("Authorization");
-            console.log(token)
-            if (!token) {
-                return res.status(401).json({ message: "Please login" });
-            }
-            
-            const decoded = jwt.verify(token, process.env.JWT_PASSWORD);
-            const user = await userModel.findById(decoded.id);
-            
-            if (!user && user.id) {
-                return res.status(404).json({ message: "Please signup" });
-            }
-            console.log(user.id);
-            req.userId = user.id; 
-            next();
-        } catch (error) {
-            console.log(error)
-            return res.status(400).json({ message: "Invalid Token", error });
-        }
-    } 
-    ,cartRouter);
+// Cart routes - protected by auth middleware
+app.use("/cart", authMiddleware, cartRouter);
 
-    app.use("/address",
-        async (req, res, next) => {
-            console.log("cart")
-            try {
-                const token = req.header("Authorization");
-                console.log(token)
-                if (!token) {
-                    return res.status(401).json({ message: "Please login" });
-                }
-                
-                const decoded = jwt.verify(token, process.env.JWT_PASSWORD);
-                const user = await userModel.findById(decoded.id);
-                
-                if (!user && user.id) {
-                    return res.status(404).json({ message: "Please signup" });
-                }
-                console.log(user.id);
-                req.userId = user.id; 
-                next();
-            } catch (error) {
-                console.log(error)
-                return res.status(400).json({ message: "Invalid Token", error });
-            }
-        } ,
-        addressRouter
-    );
+// Address routes - protected by auth middleware
+app.use("/address", authMiddleware, addressRouter);
 
 
-    app.use("/order",async (req, res, next) => {
-        console.log("cart")
-        try {
-            const token = req.header("Authorization");
-            console.log(token)
-            if (!token) {
-                return res.status(401).json({ message: "Please login" });
-            }
-            
-            const decoded = jwt.verify(token, process.env.JWT_PASSWORD);
-            const user = await userModel.findById(decoded.id);
-            
-            if (!user && user.id) {
-                return res.status(404).json({ message: "Please signup" });
-            }
-            console.log(user.id);
-            req.userId = user.id; 
-            next();
-        } catch (error) {
-            console.log(error)
-            return res.status(400).json({ message: "Invalid Token", error });
-        }
-    }, orderRouter);
+// Order routes - protected by auth middleware
+app.use("/order", authMiddleware, orderRouter);
 
 app.use("/allproducts",allProductRouter);
 

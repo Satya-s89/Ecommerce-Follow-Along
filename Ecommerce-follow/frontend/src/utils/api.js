@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from '../store';
 import { logout } from '../store/slices/authSlice';
+import { getTokenCookie } from './cookies';
 
 // Create axios instance with base URL
 const api = axios.create({
@@ -8,19 +9,23 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  // Enable sending cookies with requests
+  withCredentials: true,
 });
 
-// Add request interceptor to include JWT token in headers
+// Add request interceptor to include JWT token in headers if needed
+// Note: With HTTP-only cookies, the server will automatically get the token from cookies
+// This is a fallback in case the server expects the token in Authorization header
 api.interceptors.request.use(
   (config) => {
-    // Get token from Redux store
-    const token = store.getState().auth.token;
-    
+    // Get token from cookie
+    const token = getTokenCookie();
+
     // If token exists, add it to the request headers
     if (token) {
       config.headers.Authorization = token;
     }
-    
+
     return config;
   },
   (error) => {
@@ -39,7 +44,7 @@ api.interceptors.response.use(
       // Dispatch logout action to clear token and redirect to login
       store.dispatch(logout());
     }
-    
+
     return Promise.reject(error);
   }
 );

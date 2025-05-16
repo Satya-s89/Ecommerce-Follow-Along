@@ -1,17 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../store/slices/authSlice';
+import { logoutUser } from '../store/slices/authSlice';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, status } = useSelector((state) => state.auth);
   const { items } = useSelector((state) => state.cart);
 
   const handleLogout = () => {
-    dispatch(logout());
-    navigate('/');
+    // Use the async thunk to properly clear cookies on the server
+    dispatch(logoutUser()).then(() => {
+      navigate('/');
+    });
   };
 
   return (
@@ -83,10 +85,13 @@ const Navbar = () => {
                 </div>
               )}
               <button
-                className="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-gray-100"
+                className={`bg-white text-blue-600 px-4 py-2 rounded-md ${
+                  status === 'loading' ? 'opacity-75 cursor-not-allowed' : 'hover:bg-gray-100'
+                }`}
                 onClick={handleLogout}
+                disabled={status === 'loading'}
               >
-                Logout
+                {status === 'loading' ? 'Logging out...' : 'Logout'}
               </button>
             </>
           ) : (

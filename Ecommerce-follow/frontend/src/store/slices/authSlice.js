@@ -1,18 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import {
+  setTokenCookie,
+  getTokenCookie,
+  setUserCookie,
+  getUserCookie,
+  clearAuthCookies
+} from '../../utils/cookies';
 
-// Get token from localStorage
+// Get auth data from cookies
 const getStoredAuthData = () => {
-  const storedData = localStorage.getItem("follow-along-auth-token-user-name-id");
-  if (storedData) {
-    try {
-      return JSON.parse(storedData);
-    } catch (error) {
-      console.error("Error parsing stored auth data:", error);
-      return null;
-    }
-  }
-  return null;
+  return getUserCookie();
+};
+
+// Get token from cookies
+const getStoredToken = () => {
+  return getTokenCookie();
 };
 
 // Async thunk for user login
@@ -30,19 +33,21 @@ export const loginUser = createAsyncThunk(
       }
 
       const userData = {
-        token: response.data.token,
         name: response.data.name,
         id: response.data.id,
         userImage: response.data.userImage,
       };
 
-      // Store user data in localStorage
-      localStorage.setItem(
-        "follow-along-auth-token-user-name-id",
-        JSON.stringify(userData)
-      );
+      // Store token in cookie
+      setTokenCookie(response.data.token);
 
-      return userData;
+      // Store user data in cookie
+      setUserCookie(userData);
+
+      return {
+        token: response.data.token,
+        ...userData
+      };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Login failed');
     }
@@ -75,13 +80,32 @@ export const signupUser = createAsyncThunk(
   }
 );
 
+// Async thunk for user logout
+export const logoutUser = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      // Call the backend logout endpoint to clear the cookie
+      await axios.post(
+        "http://localhost:8080/user/logout",
+        {},
+        { withCredentials: true } // Important to include cookies
+      );
+
+      return { success: true };
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || 'Logout failed');
+    }
+  }
+);
+
 // Auth slice
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    token: getStoredAuthData()?.token || null,
+    token: getStoredToken() || null,
     user: getStoredAuthData() || null,
-    isAuthenticated: !!getStoredAuthData()?.token,
+    isAuthenticated: !!getStoredToken(),
     status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
     signupStatus: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
@@ -95,11 +119,13 @@ const authSlice = createSlice({
       state.signupStatus = 'idle';
       state.error = null;
     },
+    // Sync logout (for immediate UI update)
     logout: (state) => {
       state.token = null;
       state.user = null;
       state.isAuthenticated = false;
-      localStorage.removeItem("follow-along-auth-token-user-name-id");
+      // Clear auth cookies on client side
+      clearAuthCookies();
     }
   },
   extraReducers: (builder) => {
@@ -136,6 +162,28 @@ const authSlice = createSlice({
       .addCase(signupUser.rejected, (state, action) => {
         state.signupStatus = 'failed';
         state.error = action.payload;
+      })
+
+      // Handle logout
+      .addCase(logoutUser.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.token = null;
+        state.user = null;
+        state.isAuthenticated = false;
+        state.status = 'idle';
+        // Clear auth cookies on client side
+        clearAuthCookies();
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        // Even if the server request fails, we should still log out on the client side
+        state.token = null;
+        state.user = null;
+        state.isAuthenticated = false;
+        state.status = 'idle';
+        // Clear auth cookies on client side
+        clearAuthCookies();
       });
   },
 });

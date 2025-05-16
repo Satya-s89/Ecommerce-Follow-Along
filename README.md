@@ -287,7 +287,14 @@ By the end of this milestone, you will:
 
 ---
 
-### **🛠️ Milstone 33: Jwt token used**
+### **🛠️ Milestone 33: JWT Token in HTTP-Only Cookies** ✅
+- Implemented JWT token storage in HTTP-only cookies for enhanced security
+- Created cookie utility functions for the frontend
+- Updated API requests to include credentials for cookie transmission
+- Implemented proper cookie handling on the backend with cookie-parser
+- Added server-side logout endpoint to clear cookies
+- Created unified authentication middleware for the backend
+- Protected all sensitive routes with the new auth middleware
 - Used JWT token for authentication
 - Used JWT token for authorization
 - Used JWT token for authentication in frontend
